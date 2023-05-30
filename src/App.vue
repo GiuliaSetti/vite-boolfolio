@@ -4,6 +4,9 @@
 
 import axios from 'axios';
 
+//card
+import ProjectCard from './components/ProjectCard.vue';
+
 export default {
   name: 'App',
   data() {
@@ -11,6 +14,10 @@ export default {
       projects: [],
 
     }
+  },
+
+  components: {
+    ProjectCard,
   },
 
   created() {
@@ -22,9 +29,9 @@ export default {
     getProjects() {
       //chiamata 
       axios.get('http://127.0.0.1:8000/api/projects').then(response => {
-        console.log(response.data.results);
+        // console.log(response.data.results);
         this.projects = response.data.results;
-        console.log(this.projects);
+        // console.log(this.projects);
       })
     }
   }
@@ -38,15 +45,19 @@ export default {
     <h1>All Projects</h1>
   
     <hr>
+
+    <!-- project card -->
+    <div class="card_container d-flex gap-5 flex-wrap justify-content-center">
+
+      <div v-for="project in projects">
+        <ProjectCard :project="project"></ProjectCard>
+      </div>
+    </div>
+
   
     
       
-    <div class="card_container d-flex gap-5 flex-wrap justify-content-center">
-      <div class="card" style="max-width: 18rem;" v-for="project in projects">
-        <h4 class="text-center">{{ project.title }}</h4>
-        <div> {{ project.description }} </div>
-      </div>
-    </div>
+   
       
     
   </div>
