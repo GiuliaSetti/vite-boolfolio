@@ -9,7 +9,10 @@ import Homepage from './pages/Homepage.vue';
 import ProjectList from './pages/ProjectList.vue';
 
 //about
-import AppAbout from './pages/AppAbout.vue'
+import AppAbout from './pages/AppAbout.vue';
+
+//singolo progetto
+import SingleItem from './pages/SingleItem.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -35,7 +38,12 @@ const router = createRouter({
             path:'/about',
             name: 'about',
             component: AppAbout,
-        }
+        },
+        {
+            path: '/projects/:slug',
+            name: 'projects-show',
+            component: SingleItem,
+        },
     ],
 
 });
